@@ -67,6 +67,24 @@ export const baseApi = createApi({
       },
       providesTags: ["Product"],
     }),
+    getSingleProduct: builder.query({
+      query: (id) => {
+        return {
+          url: `/product/products/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["Product"],
+    }),
+    getProductByCategory:builder.query({
+      query:(categoryId)=>{
+        return{
+          url:`/product/products/category/${categoryId}`,
+          method:"GET"
+        }
+      },
+      providesTags:["Product"]
+    }),
     addProduct:builder.mutation({
       query:(product)=>{
         return{
@@ -124,4 +142,4 @@ export const baseApi = createApi({
   }),
 });
 
-export const { useGetCategoryQuery, useAddCategoryMutation, useDeleteCategoryMutation, useUpdateCategoryMutation, useGetProductQuery, useAddProductMutation, useDeleteProductMutation, useProductUpdateMutation, useCheckOutMutation } = baseApi;
+export const { useGetCategoryQuery, useAddCategoryMutation, useDeleteCategoryMutation, useUpdateCategoryMutation, useGetProductQuery, useAddProductMutation, useDeleteProductMutation, useProductUpdateMutation, useCheckOutMutation,useGetSingleProductQuery,useGetProductByCategoryQuery } = baseApi;

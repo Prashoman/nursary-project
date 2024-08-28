@@ -139,7 +139,7 @@ const HomeProduct = () => {
                       </div>
                     </Link>
                     <div className="py-2">
-                      <Link to={"/"} className="block">
+                      <Link to={`/product/${item._id}`} className="block">
                         <h1 className="text-[14px] lg:text-xl text-gray-800 font-serif">
                           {item.title}
                         </h1>
