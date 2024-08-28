@@ -85,7 +85,7 @@ const HomeProduct = () => {
               ))
             : "Loading..."}
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col lg:flex-row items-center justify-between py-2">
           <div className="py-6">
             <input
               type="text"

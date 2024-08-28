@@ -1,8 +1,13 @@
 import React from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi";
-import { useGetSingleProductQuery } from "../../../redux/api/baseApi";
+import { useGetProductQuery, useGetSingleProductQuery } from "../../../redux/api/baseApi";
 import { useParams } from "react-router-dom";
 import RelatedProcuts from "../../../components/RelatedProducts/RelatedProcuts";
+import { TProducts } from "../../../helpers";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { RootState } from "../../../redux/store";
+import { toast } from "react-toastify";
+import { addToCart } from "../../../redux/cart/cartSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -12,6 +17,34 @@ const ProductDetails = () => {
   let productDetailsInfo = product?.data;
   const categoryId: string = productDetailsInfo?.categoryId?._id;
   // console.log({productDetailsInfo});
+  const cartProduct = useAppSelector(
+    (state: RootState) => state.cart.cart
+  ) as TProducts[];
+  const dispatch = useAppDispatch();
+  const searchTerm = "";
+  const minPrice = "";
+  const maxPrice = "";
+  const { data: products } = useGetProductQuery({searchTerm,minPrice,maxPrice});
+  const handleAddtoCart = (item: TProducts) => {
+    const mainProductQuantity: number = products?.data?.find(
+      (mItem: TProducts) => mItem._id === item?._id
+    )?.quantity;
+    const cartProductQuantity: number | undefined = cartProduct?.find(
+      (cItem: TProducts) => cItem._id === item?._id
+    )?.quantity;
+    console.log({ mainProductQuantity, cartProductQuantity });
+
+    if (
+      (cartProductQuantity !== undefined &&
+        cartProductQuantity >= mainProductQuantity) ||
+      mainProductQuantity === 0
+    ) {
+      toast.error("You can't add more than stock quantity");
+      return;
+    }
+    dispatch(addToCart(item));
+    toast.success("Product added to cart");
+  }
 
   return (
     <>
@@ -21,9 +54,9 @@ const ProductDetails = () => {
           backgroundImage: `url('E:/Caffeine/sweet-app/src/assets/images/menu.jpg')`,
         }}
       >
-        <div className="container px-20 py-24 mx-auto bg-white bg-opacity-80 rounded-lg">
+        <div className="container px-4 lg:px-20 py-24 mx-auto bg-white bg-opacity-80 rounded-lg">
           <div className="w-full mx-auto flex flex-wrap">
-            <div className="w-[50%] p-2 border-2 border-[#EECA77] rounded-lg">
+            <div className="w-full lg:w-[50%] p-2 border-2 border-[#EECA77] rounded-lg">
               <div className="w-full">
                 <img
                   src={productDetailsInfo?.image}
@@ -59,7 +92,7 @@ const ProductDetails = () => {
               </div>
               <div className="flex gap-3">
                 <div className="pt-2">
-                  <button className="bg-green-900 text-white py-2 px-4 rounded-full flex items-center justify-center gap-2 w-full h-10 hover:green-500 hover:text-yellow-300 transition-all">
+                  <button onClick={()=>handleAddtoCart(productDetailsInfo)} className="bg-green-900 text-white py-2 px-4 rounded-full flex items-center justify-center gap-2 w-full h-10 hover:green-500 hover:text-yellow-300 transition-all">
                     <HiOutlineShoppingCart className="w-6 h-6" />
                     <span className="text-xs lg:text-sm">Add to Cart</span>
                   </button>

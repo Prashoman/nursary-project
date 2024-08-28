@@ -27,7 +27,7 @@ export default function NavBar() {
   
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-  const{data:products} = useGetProductQuery(undefined);
+  const{data:products} = useGetProductQuery({searchTerm:"",minPrice:"",maxPrice:""});
   const navigate = useNavigate();
   const cartProduct = useAppSelector((state: RootState) => state.cart.cart) as TProducts[];
   const dispatch = useAppDispatch()
@@ -35,7 +35,12 @@ export default function NavBar() {
   const handlePlus = (id: string) => {
     const mainProductQuantity:number = products?.data?.find((item:TProducts) => item._id === id)?.quantity;
     const cartProductQuantity:number | undefined = cartProduct?.find((item:TProducts) => item._id === id)?.quantity;
-    if(cartProductQuantity === mainProductQuantity){
+
+    console.log("navbar: ",{mainProductQuantity, cartProductQuantity});
+    
+    if((cartProductQuantity !== undefined &&
+      cartProductQuantity >= mainProductQuantity) || mainProductQuantity === 0
+  ){
       toast.error("You can't add more than stock quantity");
       return;
     }
