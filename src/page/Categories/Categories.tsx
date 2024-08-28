@@ -33,9 +33,9 @@ const Categories = () => {
   };
     return (
         <>
-        <div className="px-20 mt-5 ">
+        <div className="px-4 lg:px-20 mt-5 ">
       <div>
-        <div className="flex justify-end">
+        <div className="flex justify-start lg:justify-end">
           <button
             onClick={toggleModal}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

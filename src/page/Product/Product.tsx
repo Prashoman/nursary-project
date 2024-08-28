@@ -38,9 +38,7 @@ type TProductUpdate ={
 }
 
 export const Product = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
+  
   const {
     register,
     handleSubmit,
@@ -53,7 +51,7 @@ export const Product = () => {
   const updateProductFormRef = useRef<HTMLFormElement>(null);
   const [updateProductInfo, setUpdateProductInfo] = useState<TProductUpdate | null>(null);
   // const productUpdateModalRef = useRef<HTMLDivElement>(null);
-  const { data: products, isError, isLoading } = useGetProductQuery({searchTerm,minPrice,maxPrice});
+  const { data: products, isError, isLoading } = useGetProductQuery({searchTerm:"",minPrice:"",maxPrice:""});
   const [productInfoHandle] = useAddProductMutation();
   const { data: category, isLoading: categoryLoading } =
     useGetCategoryQuery(undefined);
@@ -180,7 +178,7 @@ export const Product = () => {
   };
   return (
     <>
-      <div className="py-10 px-20">
+      <div className="py-10 px-4 lg:px-20">
         <div className="flex justify-end">
           <button
             onClick={() => {
