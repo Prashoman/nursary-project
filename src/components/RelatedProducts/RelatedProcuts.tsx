@@ -55,16 +55,16 @@ const RelatedProcuts = ({categoryId}) => {
                     }}
                     className="mySwiper"
                 >
-                    {products?.map((_item: any, index:number) =>(
+                    {products?.map((item: any, index:number) =>(
                             <SwiperSlide key={index}>
                                 <div className="w-full h-full relative">
                                     <img
-                                        src={_item.image}
+                                        src={item.image}
                                         alt="placeholder"
                                         className="h-[300px] w-full"
                                     />
-                                    <div className="absolute bottom-0 left-0 w-full bg-[#690213] p-4 flex items-center justify-center shape-design">
-                                        <Link to={``} className="text-center border border-gray-200 py-1 px-3 rounded-lg text-white mt-5 shadow-xl">
+                                    <div className="absolute bottom-0 left-0 w-full bg-green-900 p-4 flex items-center justify-center shape-design">
+                                        <Link to={`/product/${item?._id}`} className="text-center border border-gray-200 py-1 px-3 rounded-lg text-white mt-5 shadow-xl">
                                             View More
                                         </Link>
                                     </div>
