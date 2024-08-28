@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 
 const HomeProduct = () => {
-  const [selectedCategories, setSelectedCategory] = useState("all");
+  const [selectedCategories, setSelectedCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
@@ -26,7 +26,13 @@ const HomeProduct = () => {
   
 
   const { data: category } = useGetCategoryQuery(undefined);
-  const { data: products } = useGetProductQuery({searchTerm,minPrice,maxPrice});
+  const productQuery={
+    searchTerm,
+    minPrice,
+    maxPrice,
+    categoryId:selectedCategories
+  }
+  const { data: products } = useGetProductQuery(productQuery);
 
   const handleAddtoCart = (item: TProducts) => {
     const mainProductQuantity: number = products?.data?.find(
@@ -59,10 +65,10 @@ const HomeProduct = () => {
         </div>
         <div className="flex items-center justify-center flex-wrap gap-5 pt-4 pb-16">
           <div
-            onClick={() => setSelectedCategory("all")}
+            onClick={() => setSelectedCategory("")}
             // ${  selectedCategory === null ? categoryColor : "" }
             className={` w-[45%] lg:w-[18%] font-serif text-[14px] lg:text-xl border border-yellow-500 py-1 px-3 text-center rounded-lg cursor-pointer hover:bg-green-900 hover:text-white ${
-              selectedCategories === "all" ? "bg-green-900 text-white" : ""
+              selectedCategories === "" ? "bg-green-900 text-white" : ""
             }`}
           >
             All

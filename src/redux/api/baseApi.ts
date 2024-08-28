@@ -59,9 +59,14 @@ export const baseApi = createApi({
       invalidatesTags:["Category"]
     }),
     getProduct: builder.query({
-      query: ({ searchTerm, minPrice, maxPrice }) => {
+      query: (productQuery) => {
+        const searchTerm:string  = productQuery?.searchTerm || "";
+        const minPrice:string = productQuery?.minPrice || "";
+        const maxPrice:string = productQuery?.maxPrice || "";
+        const categoryId:string = productQuery?.categoryId || "";
+
         return {
-          url: `/product/products?searchTerm=${searchTerm}&lowPrice=${minPrice}&highPrice=${maxPrice}`,
+          url: `/product/products?searchTerm=${searchTerm}&lowPrice=${minPrice}&highPrice=${maxPrice}&categoryId=${categoryId}`,
           method: "GET",
         };
       },
