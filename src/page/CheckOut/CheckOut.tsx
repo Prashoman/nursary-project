@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   useCheckOutMutation,
   useGetProductQuery,
@@ -20,6 +20,7 @@ const CheckOut = () => {
   const { data: products } = useGetProductQuery({searchTerm:"",minPrice:"",maxPrice:""});
   const dispatch = useAppDispatch();
   const [handleCeckout] = useCheckOutMutation();
+  const navigate = useNavigate();
   const cartProduct = useAppSelector(
     (state: RootState) => state.cart.cart
   ) as TProducts[];
@@ -94,6 +95,7 @@ const CheckOut = () => {
       dispatch(checkOut());
       toast.success("Order placed successfully");
       reset();
+      navigate("/products");
     }
 
     // console.log({ order });
