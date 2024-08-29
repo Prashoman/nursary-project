@@ -6,6 +6,7 @@ import { Product } from "../page/Product/Product";
 import Categories from "../page/Categories/Categories";
 import CheckOut from "../page/CheckOut/CheckOut";
 import ProductDetails from "../page/Product/ProductDetails/ProductDetails";
+import Products from "../page/Products/Products";
 
 const router = createBrowserRouter([
   {
@@ -17,11 +18,15 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/products",
+        path: "/product/managements",
         element: <Product />,
       },
       {
-        path: "/categories",
+        path: "/products",
+        element: <Products />,
+      },
+      {
+        path: "/category/managements",
         element: <Categories />,
       },
       {

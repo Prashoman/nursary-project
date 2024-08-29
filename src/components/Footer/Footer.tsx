@@ -1,50 +1,28 @@
-
 import {
   AiFillFacebook,
   AiFillYoutube,
   AiOutlineTwitter,
-  AiOutlineInstagram,
+  AiOutlineInstagram,  
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const items = [
-    {
-      name: "Product",
-      path: "product",
-    },
-
-    {
-      name: "Contact Us",
-      path: "contact-us",
-    },
-    {
-      name: "Privacy Policy",
-      path: "privacy-policy",
-    },
-    {
-      name: "Terms and condition",
-      path: "terms&condition",
-    },
-  ];
+  
   return (
     <footer className="w-full mt-20 lg:flex ">
       <div className="bg-green-900 opacity-95 w-full lg:w-[30%] ">
         <div className="lg:py-10 px-4 lg:px-20">
-          <div className="flex items-center justify-center">
-            {/* <Link
-              href={"/"}
+          <div className="flex items-center justify-center pb-5">
+            <Link
+              to={"/"}
               className="flex items-center space-x-3 rtl:space-x-reverse"
             >
-              {" "}
-              <Image
-                src={logo}
-                className="w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]"
-                width={60}
-                height={60}
-                alt=""
+              <img
+                src="https://i.ibb.co/st00Kdg/360-F-277685853-lq-F0kjbsy-T43-QTd-TVK4s-E7hj-SQzh-VP47-1-removebg-preview.jpg"
+                alt="logo"
+                className="w-[30px] h-[30px] lg:w-[60px] lg:h-[60px]"
               />
-            </Link> */}
+            </Link>
           </div>
           <div className="flex items-center gap-5 justify-center">
             <AiFillFacebook className="w-7 h-7 text-white cursor-pointer hover:text-[#F2BF4A] hover:w-8 hover:h-8 transition-all" />
@@ -53,8 +31,8 @@ const Footer = () => {
             <AiOutlineInstagram className="w-7 h-7 text-white cursor-pointer hover:text-[#F2BF4A] hover:w-8 hover:h-8 transition-all" />
           </div>
           <div className="mt-5">
-            <p className="text-center font-normal text-white text-[15px]">
-              HRSheba stands as the foremost provider of HR software .
+            <p className="text-justify font-normal text-white text-[15px]">
+            Trees have been a popular subject in literature due to their significant role in human life and culture, providing food.
             </p>
           </div>
         </div>
@@ -67,16 +45,38 @@ const Footer = () => {
                 Explore
               </h1>
               <ul className="space-y-2 lg:mt-5 flex lg:flex-col sm:flex-wrap gap-3 sm:items-center sm:justify-center lg:items-start lg:justify-start">
-                {items.map((item, index:number) => (
-                  <li key={index}>
-                    <Link
-                      to={item.path}
-                      className="text-white hover:text-[#F2BF4A] text-[15px] font-[500] hover:text-[16px] transition-all cursor-pointer"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
+                <li>
+                  <Link
+                    to={"/"}
+                    className="text-white hover:text-[#F2BF4A] text-[16px] font-[500] hover:text-[17px] transition-all"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/products"}
+                    className="text-white hover:text-[#F2BF4A] text-[16px] font-[500] hover:text-[17px] transition-all"
+                  >
+                    Products
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/category/managements"}
+                    className="text-white hover:text-[#F2BF4A] text-[16px] font-[500] hover:text-[17px] transition-all"
+                  >
+                    Categories Managements
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/product/managements"}
+                    className="text-white hover:text-[#F2BF4A] text-[16px] font-[500] hover:text-[17px] transition-all"
+                  >
+                    Product Managements
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
