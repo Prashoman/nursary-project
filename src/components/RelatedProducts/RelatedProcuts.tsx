@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 import TitleFormet from '../title/TitleFormet';
 import { SwiperSlide,Swiper } from 'swiper/react';
@@ -7,8 +7,9 @@ import "swiper/css/pagination";
 import { Pagination,Autoplay } from "swiper/modules";
 import { useGetProductByCategoryQuery } from '../../redux/api/baseApi';
 import { Link } from 'react-router-dom';
+import { TProducts } from '../../helpers';
 
-const RelatedProcuts = ({categoryId}) => {
+const RelatedProcuts = ({categoryId}:{ categoryId:string }) => {
     // console.log({categoryId});
     
     const {data} = useGetProductByCategoryQuery(categoryId)
@@ -55,7 +56,7 @@ const RelatedProcuts = ({categoryId}) => {
                     }}
                     className="mySwiper"
                 >
-                    {products?.map((item: any, index:number) =>(
+                    {products?.map((item: TProducts, index:number) =>(
                             <SwiperSlide key={index}>
                                 <div className="w-full h-full relative">
                                     <img

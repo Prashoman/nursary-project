@@ -1,4 +1,4 @@
-import React from "react";
+
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useGetProductQuery, useGetSingleProductQuery } from "../../../redux/api/baseApi";
 import { useParams } from "react-router-dom";

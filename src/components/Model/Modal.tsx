@@ -1,3 +1,4 @@
+import React from "react";
 import { modelClose } from "../../helpers";
 
 type ModalType = {
@@ -17,8 +18,8 @@ type ModalType = {
 
 
 const Modal = ({
-  modalRef,
-  modalForm,
+  modalRef = React.createRef<HTMLDialogElement>(),
+  modalForm = React.createRef<HTMLFormElement>(), // Add default value for modalForm
   title,
   children
 }:ModalType) => {

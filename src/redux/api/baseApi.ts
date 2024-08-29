@@ -1,16 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { TProducts } from "../../helpers";
 
-type TProductUpdate ={
-  productId?:string;
-  title?:string;
-  image?:string;
-  categoryId?:string;
-  price?:number;
-  quantity?:number;
-  rating?:number;
-  description?:string;
-}
+// type TProductUpdate ={
+//   productId?:string;
+//   title?:string;
+//   image?:string;
+//   categoryId?:string;
+//   price?:number;
+//   quantity?:number;
+//   rating?:number;
+//   description?:string;
+// }
 
 export const baseApi = createApi({
   reducerPath: "baseApi",

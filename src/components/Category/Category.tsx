@@ -6,15 +6,16 @@ import {
 
 import { useEffect, useRef, useState } from "react";
 import { Model } from "../Model/Model";
+import { TCategories } from "../../helpers";
 
-export const Category = ({ category }: { category: unknown }) => {
+export const Category = ({ category }: { category: TCategories[] }) => {
   const [itemCategory, setItemCategory] = useState<any>(null);
   //   const modalUpdateCRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const refCatgoryU = useRef<HTMLFormElement>(null);
   const [deleteCategory] = useDeleteCategoryMutation();
   const [handleEdit] = useUpdateCategoryMutation();
-  const handleCategoryEdit = (item: unknown) => {
+  const handleCategoryEdit = (item: TCategories) => {
     setItemCategory(item);
     handleModelCategory();
   };
@@ -93,7 +94,7 @@ export const Category = ({ category }: { category: unknown }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {category?.map((item: unknown, index: number) => (
+                  {category?.map((item: TCategories, index: number) => (
                     <tr key={index}>
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p className="text-gray-600 whitespace-no-wrap">
