@@ -12,7 +12,6 @@ import Swal from "sweetalert2";
 import Modal from "../../components/Model/Modal";
 import { modelClose, modelOpen, TCategories, TProducts } from "../../helpers";
 import { toast } from "react-toastify";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 // import { GiToaster } from "react-icons/gi";
 
 type Inputs = {
@@ -91,7 +90,7 @@ export const Product = () => {
         reset();
       }
       else{
-        toast.error((insertProduct.error as FetchBaseQueryError)?.data?.message);
+        toast.error("duplicated product name");
       }
     } catch (error: unknown) {
       console.log({error});
